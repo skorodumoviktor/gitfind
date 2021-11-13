@@ -1,2 +1,4 @@
 .eslintrc.js
 .prettierrc.js
+src/graphql/index.tsx
+src/setupProxy.js

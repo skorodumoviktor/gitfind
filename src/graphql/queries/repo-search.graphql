@@ -1,0 +1,5 @@
+query repoSearch($queryString: String!) {
+  search(query:$queryString, type:REPOSITORY, first:20) {  
+    repositoryCount
+  }
+}

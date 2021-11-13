@@ -1,29 +1,17 @@
-import { useQuery } from '@apollo/client'
-import {
-  ExchangeRatesData,
-  ExchangeRatesVars,
-  EXCHANGE_RATES,
-} from './graphql/queries'
+import { useRepoSearchQuery } from './graphql'
 
 export function App() {
-  const { loading, error, data } = useQuery<
-    ExchangeRatesData,
-    ExchangeRatesVars
-  >(EXCHANGE_RATES)
+  const { loading, error, data } = useRepoSearchQuery({
+    variables: {
+      queryString: 'react',
+    },
+  })
+
+  console.log('yo')
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :(</p>
   if (!data) return <p>Empty data</p>
 
-  return (
-    <>
-      {data.rates.map(({ currency, rate }) => (
-        <div key={currency}>
-          <p>
-            {currency}: {rate}
-          </p>
-        </div>
-      ))}
-    </>
-  )
+  return <>{data.search.repositoryCount}</>
 }

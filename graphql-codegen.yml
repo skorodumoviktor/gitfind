@@ -1,11 +1,14 @@
 overwrite: true
 schema:
-  - https://api.github.com/graphql:
+  - ${GITHUB_GQL_URI}:
       headers:
-        Authorization: "Bearer ${GITHUB_ACCESS_TOKEN}"
+        Authorization: "Bearer ${GITHUB_TOKEN}"
 documents: "src/**/*.graphql"
 generates:
   src/graphql/index.tsx:
+    hooks:
+      afterOneFileWrite:
+        - eslint --fix
     plugins:
       - "typescript"
       - "typescript-operations"
