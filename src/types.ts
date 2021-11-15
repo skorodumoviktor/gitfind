@@ -1,17 +1,34 @@
-export type LoginComponentProps = {
+export type LoginProps = {
   isLoggedIn: boolean
   redirectUri: string
   clientId: string
 }
 export type LoginControllerProps = {
-  children: (props: LoginComponentProps) => React.ReactElement
+  children: (props: LoginProps) => React.ReactElement
 }
 
-export type HomeComponentProps = {
+export type HomeProps = {
   isLoggedIn: boolean
-  isLoading: boolean
-  repoCount: number
 }
 export type HomeControllerProps = {
-  children: (props: HomeComponentProps) => React.ReactElement
+  children: (props: HomeProps) => React.ReactElement
+}
+
+export type Repo = {
+  id: string
+  url: string
+  description: string | null
+  name: string
+  nameWithOwner: string
+  forkCount: number
+  stargazerCount: number
+  createdAt: string
+  primaryLanguage: {
+    color: string
+    name: string
+  } | null
+  owner: {
+    login: string
+    url: string
+  }
 }

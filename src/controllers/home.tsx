@@ -1,6 +1,5 @@
 import React from 'react'
-import { useRepoCountQuery } from '../graphql'
-import { AuthContext } from '../state/auth'
+import { AuthContext } from '../state'
 import { HomeControllerProps } from '../types'
 
 export function HomeController({ children }: HomeControllerProps) {
@@ -8,11 +7,7 @@ export function HomeController({ children }: HomeControllerProps) {
     state: { isLoggedIn },
   } = React.useContext(AuthContext)
 
-  const { data, loading } = useRepoCountQuery()
-
   return children({
     isLoggedIn,
-    isLoading: loading,
-    repoCount: data?.search.repositoryCount || 0,
   })
 }

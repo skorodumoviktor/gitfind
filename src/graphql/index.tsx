@@ -22431,57 +22431,41 @@ export type WorkflowRunPendingDeploymentRequestsArgs = {
   last?: Maybe<Scalars['Int']>;
 };
 
-export type RepoCountQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type RepoCountQuery = { __typename?: 'Query', search: { __typename?: 'SearchResultItemConnection', repositoryCount: number } };
-
 export type RepoSearchQueryVariables = Exact<{
-  queryString: Scalars['String'];
+  query: Scalars['String'];
 }>;
 
 
-export type RepoSearchQuery = { __typename?: 'Query', search: { __typename?: 'SearchResultItemConnection', repositoryCount: number } };
+export type RepoSearchQuery = { __typename?: 'Query', search: { __typename?: 'SearchResultItemConnection', repositoryCount: number, edges?: Array<{ __typename?: 'SearchResultItemEdge', node?: { __typename?: 'App' } | { __typename?: 'Discussion' } | { __typename?: 'Issue' } | { __typename?: 'MarketplaceListing' } | { __typename?: 'Organization' } | { __typename?: 'PullRequest' } | { __typename?: 'Repository', id: string, name: string, nameWithOwner: string, createdAt: any, description?: string | null | undefined, url: any, forkCount: number, stargazerCount: number, primaryLanguage?: { __typename?: 'Language', color?: string | null | undefined, name: string } | null | undefined, owner: { __typename?: 'Organization', id: string, login: string, url: any } | { __typename?: 'User', id: string, login: string, url: any } } | { __typename?: 'User' } | null | undefined } | null | undefined> | null | undefined } };
 
 
-export const RepoCountDocument = gql`
-    query repoCount {
-  search(query: "", type: REPOSITORY) {
-    repositoryCount
-  }
-}
-    `;
-
-/**
- * __useRepoCountQuery__
- *
- * To run a query within a React component, call `useRepoCountQuery` and pass it any options that fit your needs.
- * When your component renders, `useRepoCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useRepoCountQuery({
- *   variables: {
- *   },
- * });
- */
-export function useRepoCountQuery(baseOptions?: Apollo.QueryHookOptions<RepoCountQuery, RepoCountQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<RepoCountQuery, RepoCountQueryVariables>(RepoCountDocument, options);
-      }
-export function useRepoCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RepoCountQuery, RepoCountQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<RepoCountQuery, RepoCountQueryVariables>(RepoCountDocument, options);
-        }
-export type RepoCountQueryHookResult = ReturnType<typeof useRepoCountQuery>;
-export type RepoCountLazyQueryHookResult = ReturnType<typeof useRepoCountLazyQuery>;
-export type RepoCountQueryResult = Apollo.QueryResult<RepoCountQuery, RepoCountQueryVariables>;
 export const RepoSearchDocument = gql`
-    query repoSearch($queryString: String!) {
-  search(query: $queryString, type: REPOSITORY, first: 20) {
+    query repoSearch($query: String!) {
+  search(query: $query, type: REPOSITORY, first: 100) {
     repositoryCount
+    edges {
+      node {
+        ... on Repository {
+          id
+          name
+          nameWithOwner
+          createdAt
+          description
+          url
+          forkCount
+          primaryLanguage {
+            color
+            name
+          }
+          stargazerCount
+          owner {
+            id
+            login
+            url
+          }
+        }
+      }
+    }
   }
 }
     `;
@@ -22498,7 +22482,7 @@ export const RepoSearchDocument = gql`
  * @example
  * const { data, loading, error } = useRepoSearchQuery({
  *   variables: {
- *      queryString: // value for 'queryString'
+ *      query: // value for 'query'
  *   },
  * });
  */

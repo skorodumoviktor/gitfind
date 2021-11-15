@@ -7,7 +7,7 @@ import {
 } from './types'
 
 const initialState: AuthReducerState = {
-  isLoggedIn: false,
+  isLoggedIn: !!localStorage.getItem('accessToken'),
   clientId: process.env.REACT_APP_CLIENT_ID || '',
   redirectUri: process.env.REACT_APP_REDIRECT_URI || '',
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { api } from '../api'
-import { AuthContext } from '../state/auth'
+import { AuthContext } from '../state'
 import { LoginControllerProps } from '../types'
 import { useQuery } from '../utils'
 
@@ -20,11 +20,13 @@ export function LoginController({ children }: LoginControllerProps) {
     [setIsLoggedIn]
   )
 
-  React.useEffect(() => {
-    const code = query.get('code')
+  const code = React.useMemo(() => {
+    return query.get('code')
+  }, [query])
 
+  React.useEffect(() => {
     if (code) authenticate(code)
-  }, [query, authenticate])
+  }, [code, authenticate])
 
   return children({ isLoggedIn, redirectUri, clientId })
 }

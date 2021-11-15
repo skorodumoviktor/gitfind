@@ -1,5 +1,0 @@
-query repoCount {
-  search(query: "", type:REPOSITORY) {  
-    repositoryCount
-  }
-}

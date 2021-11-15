@@ -35,10 +35,12 @@ app.post('/api/authenticate', (req, res) => {
     .then((response) => {
       const params = new URLSearchParams(response.data)
       const accessToken = params.get('access_token')
-      return res.status(200).json(accessToken)
+      if (accessToken) return res.status(200).json(accessToken)
+      return res.status(400).json({ message: 'No access token from GitHub' })
     })
     .catch((error) => {
-      return res.status(400).json(error)
+      console.log(error.message)
+      return res.status(500).json({ message: 'Internal error' })
     })
 })
 
