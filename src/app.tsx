@@ -1,17 +1,21 @@
-import { useRepoSearchQuery } from './graphql'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { HomePage } from './pages/home'
+import { LoginPage } from './pages/login'
+import { AuthContextProvider } from './state/auth'
 
 export function App() {
-  const { loading, error, data } = useRepoSearchQuery({
-    variables: {
-      queryString: 'react',
-    },
-  })
-
-  console.log('yo')
-
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error :(</p>
-  if (!data) return <p>Empty data</p>
-
-  return <>{data.search.repositoryCount}</>
+  return (
+    <AuthContextProvider>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          <Route path="/login">
+            <LoginPage />
+          </Route>
+        </Switch>
+      </Router>
+    </AuthContextProvider>
+  )
 }
