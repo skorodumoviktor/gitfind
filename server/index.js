@@ -6,7 +6,7 @@ const { CLIENT_ID, CLIENT_SECRET } = require('./config')
 
 const app = express()
 app.use(express.json())
-app.use(express.static(path.join(__dirname, 'build')))
+app.use(express.static(path.join(__dirname, '..', 'build')))
 
 app.use(
   '/api/graphql',
@@ -16,6 +16,10 @@ app.use(
     },
   }),
 )
+
+app.get('/*', (_, res) => {
+  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'))
+})
 
 // returns GitHub access token
 app.post('/api/authenticate', (req, res) => {
@@ -44,9 +48,5 @@ app.post('/api/authenticate', (req, res) => {
     })
 })
 
-app.get('/', (_, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'))
-})
-
-const PORT = process.env.SERVER_PORT || 5000
+const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log(`Listening on ${PORT}`))

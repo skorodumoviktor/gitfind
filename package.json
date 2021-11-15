@@ -1,7 +1,7 @@
 {
   "name": "gitfind",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "license": "UNLICENSED",
   "scripts": {
     "start": "react-scripts start",
     "server": "node ./server/index.js",
@@ -10,6 +10,9 @@
     "gql": "graphql-codegen --config graphql-codegen.yml"
   },
   "proxy": "http://localhost:5000",
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "@apollo/client": "^3.4.17",
     "@graphql-codegen/cli": "2.2.2",
