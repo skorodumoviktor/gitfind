@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "react-scripts start",
-    "server": "node ./server/index.js",
+    "dev": "react-scripts start",
+    "start": "node ./server/index.js",
     "build": "react-scripts build",
     "lint": "eslint src/**/*.ts{,x}",
     "gql": "graphql-codegen --config graphql-codegen.yml"
