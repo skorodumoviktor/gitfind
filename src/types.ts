@@ -1,5 +1,4 @@
 export type LoginProps = {
-  isLoggedIn: boolean
   redirectUri: string
   clientId: string
 }
@@ -7,11 +6,8 @@ export type LoginControllerProps = {
   children: (props: LoginProps) => React.ReactElement
 }
 
-export type HomeProps = {
-  isLoggedIn: boolean
-}
 export type HomeControllerProps = {
-  children: (props: HomeProps) => React.ReactElement
+  children: () => React.ReactElement
 }
 
 export type Repo = {

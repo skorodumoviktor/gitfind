@@ -1,9 +1,12 @@
 import styled from 'styled-components'
+import { device } from '../../utils'
 import { Container } from '../layout'
 
 export const HomeContainer = styled(Container)`
-  padding-top: 72px;
-  padding-bottom: 72px;
+  margin: 72px auto;
   display: flex;
   justify-content: center;
+  @media ${device.mobile} {
+    margin: 44px auto;
+  }
 `

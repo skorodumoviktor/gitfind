@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import { api } from '../api'
 import { AuthContext } from '../state'
 import { LoginControllerProps } from '../types'
@@ -28,5 +29,7 @@ export function LoginController({ children }: LoginControllerProps) {
     if (code) authenticate(code)
   }, [code, authenticate])
 
-  return children({ isLoggedIn, redirectUri, clientId })
+  if (isLoggedIn) return <Redirect to="/" />
+
+  return children({ redirectUri, clientId })
 }

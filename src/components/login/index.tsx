@@ -1,11 +1,8 @@
-import { Redirect } from 'react-router-dom'
 import { LoginProps } from '../../types'
 import { Page } from '../layout'
 import { LoginContainer, LoginLink } from './styled'
 
-export function Login({ isLoggedIn, clientId, redirectUri }: LoginProps) {
-  if (isLoggedIn) return <Redirect to="/" />
-
+export function Login({ clientId, redirectUri }: LoginProps) {
   const authUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=${clientId}&redirect_uri=${redirectUri}`
 
   return (

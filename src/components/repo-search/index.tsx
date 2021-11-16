@@ -26,7 +26,8 @@ export function RepoSearch() {
       return
     }
 
-    setRepos(repoSearchResponse.search.edges.map((edge) => edge!.node as Repo))
+    // TODO properly map generated typings with what you use in application
+    setRepos(repoSearchResponse.search.edges.map((edge) => edge?.node as Repo))
     setRepoCount(repoSearchResponse.search.repositoryCount)
   }, [repoSearchResponse])
 
