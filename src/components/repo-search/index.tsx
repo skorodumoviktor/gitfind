@@ -16,6 +16,7 @@ export function RepoSearch() {
 
   const { colors } = useTheme()
 
+  // TODO add error handling
   const [searchRepos, { loading: isLoading, data: repoSearchResponse }] =
     useRepoSearchLazyQuery()
 
