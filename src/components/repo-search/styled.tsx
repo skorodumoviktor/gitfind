@@ -3,20 +3,20 @@ import styled from 'styled-components'
 export const Container = styled.div`
   width: 100%;
   max-width: 600px;
+  position: relative;
 `
 
 export const Input = styled.input`
   width: 100%;
-  min-width: 300px;
   border: 1px solid ${(props) => props.theme.colors.border};
   border-radius: 2px;
   height: 38px;
-  color: ${(props) => props.theme.colors.body}
+  color: ${(props) => props.theme.colors.body};
   outline: none;
   padding: 0 12px;
   &:focus {
     outline: none;
-    border-color: ${(props) => props.theme.colors.link}
+    border-color: ${(props) => props.theme.colors.link};
   }
 `
 

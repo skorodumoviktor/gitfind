@@ -54,6 +54,7 @@ export function RepoSearch() {
     <Container>
       <InputContainer>
         <Input
+          type="text"
           value={inputValue}
           onChange={onInputChange}
           placeholder="Start searching GitHub repositories..."

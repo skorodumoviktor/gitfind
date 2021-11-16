@@ -8,9 +8,8 @@ import {
   Container,
   Title,
   ItemsContainer,
-  TitleStrong,
   LangCircle,
-  Description,
+  CountContainer,
 } from './styled'
 
 type RepoListProps = {
@@ -40,44 +39,42 @@ function RepoListComponent({ totalCount, repos }: RepoListProps) {
             stargazerCount,
             primaryLanguage,
           }) => (
-            <ItemContainer key={id}>
-              <Row xBetween>
-                <Col>
-                  <Title
-                    href={url}
-                    target="_blank"
-                    style={{ marginBottom: '8px' }}
-                  >
-                    {nameWithOwner}
-                  </Title>
+            <ItemContainer key={id} xBetween>
+              <Col>
+                <Title
+                  href={url}
+                  target="_blank"
+                  style={{ marginBottom: '8px' }}
+                >
+                  {nameWithOwner}
+                </Title>
 
-                  <Description
-                    dangerouslySetInnerHTML={{ __html: description || '' }}
-                  ></Description>
+                <small
+                  dangerouslySetInnerHTML={{ __html: description || '' }}
+                ></small>
 
-                  {primaryLanguage && (
-                    <Row yCenter style={{ marginTop: '8px' }}>
-                      <LangCircle color={primaryLanguage.color} />
-                      &nbsp;
-                      <small>{primaryLanguage.name}</small>
-                    </Row>
-                  )}
-                </Col>
-
-                <Col>
-                  <Row yCenter xEnd>
-                    <small>{stargazerCount}</small>
+                {primaryLanguage && (
+                  <Row yCenter style={{ marginTop: '8px' }}>
+                    <LangCircle color={primaryLanguage.color} />
                     &nbsp;
-                    <Icon name="star" color={colors.yellow} />
+                    <small>{primaryLanguage.name}</small>
                   </Row>
+                )}
+              </Col>
 
-                  <Row yCenter xEnd>
-                    <small>{forkCount}</small>
-                    &nbsp;
-                    <Icon name="fork" />
-                  </Row>
-                </Col>
-              </Row>
+              <CountContainer>
+                <Row yCenter xEnd>
+                  <small>{stargazerCount}</small>
+                  &nbsp;
+                  <Icon name="star" color={colors.yellow} />
+                </Row>
+                &nbsp;
+                <Row yCenter xEnd>
+                  <small>{forkCount}</small>
+                  &nbsp;
+                  <Icon name="fork" />
+                </Row>
+              </CountContainer>
             </ItemContainer>
           )
         )}

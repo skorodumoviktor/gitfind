@@ -1,45 +1,41 @@
 import styled from 'styled-components'
+import { device } from '../../utils'
+import { Col, Row } from '../layout'
 
 export const Container = styled.div`
   border-radius: 4px;
 `
 
-export const ItemContainer = styled.div`
+export const ItemContainer = styled(Row)`
   padding: 16px;
   width: 100%;
-  display: flex;
-  flex-direction: column;
   border-bottom: 1px solid ${(props) => props.theme.colors.border};
+  overflow: hidden;
   &:last-child {
     border-bottom: none;
+  }
+  @media ${device.mobile} {
+    padding: 8px;
+    flex-direction: column;
   }
 `
 
 export const ItemsContainer = styled.div`
   border: 1px solid ${(props) => props.theme.colors.border};
-  overflow-y: scroll;
-  max-height: 500px;
   border-radius: 2px;
-  padding-left: 8px;
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-  &::-webkit-scrollbar-thumb {
-    -webkit-appearance: none;
-    border-radius: 2px;
-    background-color: ${(props) => props.theme.colors.border};
+  padding: 0 8px;
+  @media ${device.mobile} {
+    padding: 0;
   }
 `
 
 export const Title = styled.a`
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: ${(props) => props.theme.colors.link};
   &:hover {
     color: ${(props) => props.theme.colors.linkHover};
   }
-`
-
-export const TitleStrong = styled.a`
-  color: ${(props) => props.theme.colors.linkHover};
 `
 
 export const CounterContainer = styled.div`
@@ -55,4 +51,10 @@ export const LangCircle = styled.div<{ color: string }>`
   border-radius: 50%;
 `
 
-export const Description = styled.small``
+export const CountContainer = styled(Col)`
+  margin-left: 8px;
+  @media ${device.mobile} {
+    flex-direction: row;
+    margin: 0;
+  }
+`

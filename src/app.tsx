@@ -10,6 +10,7 @@ import { HomeController } from './controllers/home'
 import { LoginController } from './controllers/login'
 import { AuthContextProvider } from './state'
 import { Header } from './components/header'
+import { device } from './utils'
 
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 
@@ -33,6 +34,22 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     padding: 0;
     margin: 0;
+    font-size: 16px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      -webkit-appearance: none;
+      border-radius: 2px;
+      background-color: ${(props) => props.theme.colors.border};
+    }
+    @media ${device.mobile} {
+      font-size: 14px;
+    }
+  }
+  input[type="text"] {
+    font-size: 16px;
   }
   h1 {
     margin: 0;
@@ -40,6 +57,9 @@ const GlobalStyle = createGlobalStyle`
   }
   a {
     text-decoration: none;
+  }
+  small {
+    font-size: 0.75em;
   }
 `
 
